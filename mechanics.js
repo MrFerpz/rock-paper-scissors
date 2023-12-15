@@ -6,8 +6,9 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice () {
-    let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-    return playerSelection;
+    let playerSelection = prompt("Rock, paper, or scissors?")
+    let lowerCased = playerSelection.toLowerCase()
+    return lowerCased;
 }
 
 function playRound() {
@@ -45,17 +46,17 @@ function playRound() {
     }
     else if (playerSelection === computerSelection) {
         console.log("Tie! Play again?")
-        playRound();
+        return playRound();
     }
     else {
         console.log("Sorry, I don't know what you said. Try 'rock', 'paper', or 'scissors' without punctuation!")
-        playRound();
+        return playRound();
     }
 }
 
 function game() {
     let playerScore = 0;
-    for (let i = 0; i = 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         playerScore += playRound();
         console.log(playerScore)
     }
