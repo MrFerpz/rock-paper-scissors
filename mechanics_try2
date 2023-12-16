@@ -12,7 +12,9 @@ function getComputerChoice () {
 function getPlayerChoice () {
     let playerQuestion = prompt("Rock, paper, or scissors?");
     let playerSelection = playerQuestion.toLowerCase();
-        if (playerSelection === "rock" || playerSelection === "scissors" || playerSelection === "paper") {
+        if (playerSelection === "rock" || 
+            playerSelection === "scissors" || 
+            playerSelection === "paper") {
             return playerSelection;
         } else {
             console.log("Please input rock, paper, or scissors spelled as shown.")
@@ -33,12 +35,16 @@ function playRound (playerSelection, computerSelection) {
         playRound (getPlayerChoice(), computerSelection)
         // Computer asks for another input if its a tie
     }
-    else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
+    else if ((playerSelection === "rock" && computerSelection === "scissors") || 
+        (playerSelection === "scissors" && computerSelection === "paper") || 
+        (playerSelection === "paper" && computerSelection === "rock")) {
         console.log("You win! Good job.");
         playerScore += 1;
         // If you win it adds one to your score
     }
-    else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "scissors" && computerSelection == "rock") || (playerSelection === "paper" && computerSelection === "scissors")) {
+    else if ((playerSelection === "rock" && computerSelection === "paper") || 
+        (playerSelection === "scissors" && computerSelection == "rock") || 
+        (playerSelection === "paper" && computerSelection === "scissors")) {
         console.log("You lose. Try again!")
         computerScore += 1;
         // If the computer wins it adds one to the computer's score
