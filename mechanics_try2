@@ -1,0 +1,27 @@
+let choices = ["Rock", "Paper", "Scissors"]
+
+function getComputerChoice () {
+    let computerSelection = choices[Math.floor(Math.random()*3)].toLowerCase();
+    return computerSelection;
+}
+
+function getPlayerChoice () {
+    let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+        if (playerSelection === "rock" || playerSelection === "scissors" || playerSelection === "paper") {
+            return playerSelection;
+        } else {
+            console.log("Please input rock, paper, or scissors spelled as shown.")
+            getPlayerChoice()
+        }
+}
+
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
+
+function playRound (playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        console.log("Tie. Play again!");
+        playRound (getPlayerChoice(), computerSelection)
+    }
+    else if (playerSelection === "rock")
+}
