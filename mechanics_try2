@@ -23,19 +23,37 @@ function getPlayerChoice () {
 // Setting up the selections to be globally accessed
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
+let playerScore = 0;
+let computerScore = 0;
 
 // Setting up the play round logic
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log("Tie. Play again!");
         playRound (getPlayerChoice(), computerSelection)
+        // Computer asks for another input if its a tie
     }
     else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
-        console.log("You win! Good job.")
+        console.log("You win! Good job.");
+        playerScore += 1;
+        // If you win it adds one to your score
     }
     else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "scissors" && computerSelection == "rock") || (playerSelection === "paper" && computerSelection === "scissors")) {
         console.log("You lose. Try again!")
+        computerScore += 1;
+        // If the computer wins it adds one to the computer's score
     }
 }
 
-playRound (playerSelection, computerSelection)
+function game() {
+    // Game logic for playing 5 round and recording score
+    for (let i = 1; i <= 5; i++) {
+        playRound(playerSelection, computerSelection);
+        console.log("Player points: " + playerScore + " --- Computer points: " + computerScore);
+        getPlayerChoice();
+    }
+}
+
+game()
+
+
