@@ -1,16 +1,17 @@
 // Setting up the different choices.
-let choices = ["Rock", "Paper", "Scissors"]
+let choices = ["rock", "paper", "scissors"]
 
 // Getting the randomised computer choice.
 function getComputerChoice () {
-    let computerSelection = choices[Math.floor(Math.random()*3)].toLowerCase();
+    let computerSelection = choices[Math.floor(Math.random()*3)];
     return computerSelection;
 }
 
 // Asking for the player for a choice.
 // If they input something wrong, we'll ask them again.
 function getPlayerChoice () {
-    let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+    let playerQuestion = prompt("Rock, paper, or scissors?");
+    let playerSelection = playerQuestion.toLowerCase();
         if (playerSelection === "rock" || playerSelection === "scissors" || playerSelection === "paper") {
             return playerSelection;
         } else {
@@ -29,5 +30,12 @@ function playRound (playerSelection, computerSelection) {
         console.log("Tie. Play again!");
         playRound (getPlayerChoice(), computerSelection)
     }
-    else if (playerSelection === "rock")
+    else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
+        console.log("You win! Good job.")
+    }
+    else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "scissors" && computerSelection == "rock") || (playerSelection === "paper" && computerSelection === "scissors")) {
+        console.log("You lose. Try again!")
+    }
 }
+
+playRound (playerSelection, computerSelection)
