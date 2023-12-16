@@ -1,10 +1,14 @@
+// Setting up the different choices.
 let choices = ["Rock", "Paper", "Scissors"]
 
+// Getting the randomised computer choice.
 function getComputerChoice () {
     let computerSelection = choices[Math.floor(Math.random()*3)].toLowerCase();
     return computerSelection;
 }
 
+// Asking for the player for a choice.
+// If they input something wrong, we'll ask them again.
 function getPlayerChoice () {
     let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
         if (playerSelection === "rock" || playerSelection === "scissors" || playerSelection === "paper") {
@@ -15,9 +19,11 @@ function getPlayerChoice () {
         }
 }
 
+// Setting up the selections to be globally accessed
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 
+// Setting up the play round logic
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log("Tie. Play again!");
