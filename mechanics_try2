@@ -13,6 +13,9 @@ const scissors = document.createElement("button");
 scissors.textContent = "Scissors";
 scissors.style.cssText = "padding: 20px; margin: 10px; color: white; background-color: black;";
 
+const lastResult = document.createElement("div");
+lastResult.textContent = ""
+
 let playerScore = 0;
 let computerScore = 0;
 
@@ -26,6 +29,7 @@ const body = document.querySelector("body");
 body.appendChild(rock);
 body.appendChild(paper);
 body.appendChild(scissors);
+body.appendChild(lastResult);
 body.appendChild(playerCount);
 body.appendChild(computerCount);
 
@@ -82,12 +86,12 @@ scissors.addEventListener("click", () => {
 // Setting up the play round logic
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log("Tie. Play again!");
+        lastResult.textContent = "Tie. Play again!";
     }
     else if ((playerSelection === "rock" && computerSelection === "scissors") || 
         (playerSelection === "scissors" && computerSelection === "paper") || 
         (playerSelection === "paper" && computerSelection === "rock")) {
-        console.log("You win! Good job.");
+        lastResult.textContent = "You win! Good job.";
         playerScore += 1;
         playerCount.textContent = `Your score is ${playerScore}`;
         // If you win it adds one to your score
@@ -95,7 +99,7 @@ function playRound (playerSelection, computerSelection) {
     else if ((playerSelection === "rock" && computerSelection === "paper") || 
         (playerSelection === "scissors" && computerSelection == "rock") || 
         (playerSelection === "paper" && computerSelection === "scissors")) {
-        console.log("You lose. Try again!")
+        lastResult.textContent = "You lose. Try again!";
         computerScore += 1;
         computerCount.textContent = `Computer's score is ${computerScore}`;
         // If the computer wins it adds one to the computer's score
