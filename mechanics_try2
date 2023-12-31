@@ -13,10 +13,21 @@ const scissors = document.createElement("button");
 scissors.textContent = "Scissors";
 scissors.style.cssText = "padding: 20px; margin: 10px; color: white; background-color: black;";
 
+let playerScore = 0;
+let computerScore = 0;
+
+const playerCount = document.createElement("div");
+playerCount.textContent = `Your score is ${playerScore}`;
+
+const computerCount = document.createElement("div");
+computerCount.textContent = `Computer's score is ${computerScore}`;
+
 const body = document.querySelector("body");
 body.appendChild(rock);
 body.appendChild(paper);
 body.appendChild(scissors);
+body.appendChild(playerCount);
+body.appendChild(computerCount);
 
 // Getting the randomised computer choice.
 function getComputerChoice () {
@@ -67,8 +78,6 @@ scissors.addEventListener("click", () => {
 // Setting up the selections to be globally accessed
 // const playerSelection = getPlayerChoice();
 // const computerSelection = getComputerChoice();
-let playerScore = 0;
-let computerScore = 0;
 
 // Setting up the play round logic
 function playRound (playerSelection, computerSelection) {
@@ -80,6 +89,7 @@ function playRound (playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === "rock")) {
         console.log("You win! Good job.");
         playerScore += 1;
+        playerCount.textContent = `Your score is ${playerScore}`;
         // If you win it adds one to your score
     }
     else if ((playerSelection === "rock" && computerSelection === "paper") || 
@@ -87,6 +97,7 @@ function playRound (playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === "scissors")) {
         console.log("You lose. Try again!")
         computerScore += 1;
+        computerCount.textContent = `Computer's score is ${computerScore}`;
         // If the computer wins it adds one to the computer's score
     }
 }
