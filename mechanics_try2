@@ -1,30 +1,72 @@
 // Setting up the different choices.
 let choices = ["rock", "paper", "scissors"]
 
+const rock = document.createElement("button");
+rock.textContent = "Rock";
+rock.style.cssText = "padding: 20px; margin: 10px; color: white; background-color: black;";
+
+const paper = document.createElement("button");
+paper.textContent = "Paper";
+paper.style.cssText = "padding: 20px; margin: 10px; color: white; background-color: black;";
+
+const scissors = document.createElement("button");
+scissors.textContent = "Scissors";
+scissors.style.cssText = "padding: 20px; margin: 10px; color: white; background-color: black;";
+
+const body = document.querySelector("body");
+body.appendChild(rock);
+body.appendChild(paper);
+body.appendChild(scissors);
+
 // Getting the randomised computer choice.
 function getComputerChoice () {
     let computerSelection = choices[Math.floor(Math.random()*3)];
     return computerSelection;
 }
 
+let playerSelection = "";
+let computerSelection = getComputerChoice();
+
+paper.addEventListener("click", () => {
+    playerSelection = "paper";
+    event.stopPropagation();
+    playRound(playerSelection, computerSelection);
+    computerSelection = getComputerChoice();
+})
+
+rock.addEventListener("click", () => {
+    playerSelection = "rock";
+    event.stopPropagation();
+    playRound(playerSelection, computerSelection);
+    computerSelection = getComputerChoice();
+})
+
+scissors.addEventListener("click", () => {
+    playerSelection = "scissors";
+    event.stopPropagation();
+    playRound(playerSelection, computerSelection);
+    computerSelection = getComputerChoice();
+})
+
+
 // Asking for the player for a choice.
 // If they input something wrong, we'll ask them again.
-function getPlayerChoice () {
-    let playerQuestion = prompt("Rock, paper, or scissors?");
-    let playerSelection = playerQuestion.toLowerCase();
-        if (playerSelection === "rock" || 
-            playerSelection === "scissors" || 
-            playerSelection === "paper") {
-            return playerSelection;
-        } else {
-            console.log("Please input rock, paper, or scissors spelled as shown.")
-            getPlayerChoice()
-        }
-}
+// function getPlayerChoice () {
+//     let playerQuestion = prompt("Rock, paper, or scissors?");
+//     let playerSelection = playerQuestion.toLowerCase();
+//         if (playerSelection === "rock" || 
+//             playerSelection === "scissors" || 
+//             playerSelection === "paper") {
+//             return playerSelection;
+//         } else {
+//             console.log("Please input rock, paper, or scissors spelled as shown.")
+//             getPlayerChoice()
+//         }
+// }
 
 // Setting up the selections to be globally accessed
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
+// const playerSelection = getPlayerChoice();
+// const computerSelection = getComputerChoice();
 let playerScore = 0;
 let computerScore = 0;
 
@@ -32,8 +74,6 @@ let computerScore = 0;
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log("Tie. Play again!");
-        playRound (getPlayerChoice(), computerSelection)
-        // Computer asks for another input if its a tie
     }
     else if ((playerSelection === "rock" && computerSelection === "scissors") || 
         (playerSelection === "scissors" && computerSelection === "paper") || 
@@ -51,15 +91,15 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    // Game logic for playing 5 round and recording score
-    for (let i = 1; i <= 5; i++) {
-        playRound(playerSelection, computerSelection);
-        console.log("Player points: " + playerScore + " --- Computer points: " + computerScore);
-        getPlayerChoice();
-    }
-}
+// function game() {
+//     // Game logic for playing 5 round and recording score
+//     for (let i = 1; i <= 5; i++) {
+//         playRound(playerSelection, computerSelection);
+//         console.log("Player points: " + playerScore + " --- Computer points: " + computerScore);
+//         getPlayerChoice();
+//     }
+// }
 
-game()
+// game()
 
 
