@@ -14,7 +14,10 @@ scissors.textContent = "Scissors";
 scissors.style.cssText = "padding: 20px; margin: 10px; color: white; background-color: black;";
 
 const lastResult = document.createElement("div");
-lastResult.textContent = ""
+lastResult.textContent = "";
+
+const victoryText = document.createElement("div");
+victoryText.textContent = "";
 
 let playerScore = 0;
 let computerScore = 0;
@@ -32,6 +35,7 @@ body.appendChild(scissors);
 body.appendChild(lastResult);
 body.appendChild(playerCount);
 body.appendChild(computerCount);
+body.appendChild(victoryText);
 
 // Getting the randomised computer choice.
 function getComputerChoice () {
@@ -93,7 +97,7 @@ function playRound (playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === "rock")) {
         lastResult.textContent = "You win! Good job.";
         playerScore += 1;
-        playerCount.textContent = `Your score is ${playerScore}`;
+        playerCount.textContent = `Your score is ${playerScore}.`;
         // If you win it adds one to your score
     }
     else if ((playerSelection === "rock" && computerSelection === "paper") || 
@@ -101,8 +105,15 @@ function playRound (playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === "scissors")) {
         lastResult.textContent = "You lose. Try again!";
         computerScore += 1;
-        computerCount.textContent = `Computer's score is ${computerScore}`;
+        computerCount.textContent = `Computer's score is ${computerScore}.`;
         // If the computer wins it adds one to the computer's score
+    }
+    if (playerScore >= 5) {
+        victoryText.textContent = "Congratulations, you won!";
+    }
+    
+    if (computerScore >= 5) {
+        victoryText.textContent = "Oh no! You lost!";
     }
 }
 
